@@ -28,9 +28,9 @@ def play_game():
     secret_word = get_random_word()
     mistakes = 0
     guessed_letters = []
-    print("=" * 28)
-    print("Welcome to Snowman Meltdown!")
-    print("=" * 28, end="")
+    print("=" * 36)
+    print("    Welcome to Snowman Meltdown!")
+    print("=" * 36, end="")
     print("""
 *         *        .     *     .
 *     .     *       *      *
