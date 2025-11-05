@@ -35,7 +35,7 @@ def play_game():
 *         *        .     *     .
 *     .     *       *      *
       """, end="")
-    while mistakes < 3:
+    while mistakes < 6:
         displayed_word = display_game_state(mistakes, secret_word, guessed_letters)
         if displayed_word.replace(" ", "") == secret_word:
             print("Congratulations, you saved the snowman!")
@@ -59,5 +59,6 @@ def play_game():
 
         if guess not in secret_word:
             mistakes += 1
-            if mistakes == 3:
+            if mistakes == 6:
+                print(STAGES[-1])
                 print(f"Game Over! The word was: {secret_word}")
