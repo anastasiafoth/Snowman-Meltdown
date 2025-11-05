@@ -28,16 +28,36 @@ def play_game():
     secret_word = get_random_word()
     mistakes = 0
     guessed_letters = []
-
+    print("=" * 28)
     print("Welcome to Snowman Meltdown!")
-
-    while mistakes <= 3:
+    print("=" * 28, end="")
+    print("""
+*         *        .     *     .
+*     .     *       *      *
+      """, end="")
+    while mistakes < 3:
         displayed_word = display_game_state(mistakes, secret_word, guessed_letters)
         if displayed_word.replace(" ", "") == secret_word:
             print("Congratulations, you saved the snowman!")
             break
 
-        guess = input("Guess a letter: ").lower()
-        guessed_letters.append(guess)
+        while True:
+            guess = input("Guess a letter: ").lower()
+            special_chars = [
+                "!", "@", "#", "$", "%", "^", "&", "*", "(", ")",
+                "-", "_", "=", "+", "[", "]", "{", "}", ";", ":",
+                "'", '"', "\\", "|", ",", ".", "<", ">", "/", "?",
+                "`", "~", "§", "´"
+            ]
+            if guess.isdigit() or guess in special_chars:
+                print("The letter shouldn´t contain digits or special characters.")
+            elif len(guess) == 1:
+                guessed_letters.append(guess)
+                break
+            else:
+                print("Please enter one letter only.")
+
         if guess not in secret_word:
             mistakes += 1
+            if mistakes == 3:
+                print(f"Game Over! The word was: {secret_word}")
